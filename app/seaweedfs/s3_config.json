@@ -1,0 +1,18 @@
+{
+  "identities": [
+    {
+      "name": "equipmentapp",
+      "credentials": [
+        {
+          "accessKey": "equipmentAccessKey",
+          "secretKey": "equipmentSecretKey12345"
+        }
+      ],
+      "actions": [
+        "Admin",
+        "Read",
+        "Write"
+      ]
+    }
+  ]
+}
