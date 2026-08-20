@@ -11,7 +11,7 @@ router = APIRouter(prefix="/bookings", tags=["Bookings"])
 
 @router.post("", response_model=schemas.BookingOut, status_code=201)
 def create_booking(payload: schemas.BookingCreate, db: Session = Depends(get_db)):
-    equipment = db.query(models.Equipment).get(payload.equipment_id)
+    equipment = db.get(models.Equipment, payload.equipment_id)
     if not equipment:
         raise HTTPException(status_code=404, detail="Equipment not found")
 
@@ -59,7 +59,7 @@ def list_bookings(
 
 @router.delete("/{booking_id}", response_model=schemas.BookingOut)
 def cancel_booking(booking_id: int, db: Session = Depends(get_db)):
-    booking = db.query(models.Booking).get(booking_id)
+    booking = db.get(models.Booking, booking_id)
     if not booking:
         raise HTTPException(status_code=404, detail="Booking not found")
 
